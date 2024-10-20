@@ -8,6 +8,9 @@ spring:
           - id: auth-user-microservice
             uri: http://localhost:8082
             predicates:
-              - Path: /mental-health-user-auth/**
+              - path=/mental-health-user-auth/**
 server:
   port: 9900
+logging:
+  level:
+    org.springframework.security: TRACE
