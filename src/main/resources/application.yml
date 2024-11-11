@@ -14,3 +14,7 @@ server:
 logging:
   level:
     org.springframework.security: TRACE
+mental:
+  health:
+    validate-token:
+      url: ${VALIDATE_TOKEN_URL}

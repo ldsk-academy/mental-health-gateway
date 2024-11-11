@@ -1,20 +1,15 @@
 package br.com.mh.security.util;
 
-import br.com.mh.vo.RolesVo;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 import javax.crypto.SecretKey;
 import java.nio.charset.StandardCharsets;
-import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
 public class JwtUtil {
@@ -45,11 +40,7 @@ public class JwtUtil {
 
     public List<String> getRolesFromJwt(String token) {
 
-        return extractAllClaims(token).get("roles", RolesVo.class)
-                .getRoles()
-                .stream()
-                .map(this::formatRoleName)
-                .collect(Collectors.toList());
+        return extractAllClaims(token).get("roles", List.class);
     }
 
     private String formatRoleName(String role) {
